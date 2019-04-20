@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
                             temp.title = resultsObject.getString("title")
                             temp.artist = resultsObject.getString("artist")
                             temp.image = resultsObject.getString("image")
-                            temp.thumbnail_image = resultsObject.getString("image")
+                            temp.thumbnail_image = resultsObject.getString("thumbnail_image")
                             albums.add(temp)
                         }
 

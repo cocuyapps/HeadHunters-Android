@@ -22,23 +22,28 @@ class AlbumsAdapter(private var albums: List<AlbumClass>) :
         var titleTextView: TextView
         var artistTextView: TextView
         var image: ANImageView
+        var thumbnail_image: ANImageView
         var contentAlbum: ConstraintLayout
         init {
             titleTextView = albumView.title
             artistTextView = albumView.artist
             image = albumView.image
+            thumbnail_image = albumView.thumbnail_image
             contentAlbum = albumView.contentAlbum
         }
         fun bindTo(album: AlbumClass) {
             titleTextView.text = album.title
             artistTextView.text = album.artist
             image.setImageUrl(album.image)
+            thumbnail_image.setImageUrl(album.thumbnail_image)
+
             contentAlbum.setOnClickListener {
                 val bundle = Bundle()
                 bundle.apply {
                     putString("title", album.title)
                     putString("artist", album.artist)
                     putString("image", album.image)
+                    putString("thumbnail_image", album.thumbnail_image)
                 }
                 var intent = Intent(it.context, AlbumActivity::class.java)
                 intent.putExtras(bundle) //Intent initializes an activity. context is the current activity
