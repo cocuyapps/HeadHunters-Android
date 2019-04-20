@@ -9,7 +9,8 @@ data class AlbumClass(
     var image: String,
     var songs: List<String>,
     var genre: String,
-    var likes: Number
+    var likes: Number,
+    var description: String
 ) {
     constructor() : this (
         "",
@@ -20,5 +21,6 @@ data class AlbumClass(
         "",
         ArrayList<String>(),
         "",
-        0)
+        0,
+        "")
 }
