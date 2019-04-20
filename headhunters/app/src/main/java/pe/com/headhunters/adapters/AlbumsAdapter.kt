@@ -44,6 +44,7 @@ class AlbumsAdapter(private var albums: List<AlbumClass>) :
                     putString("artist", album.artist)
                     putString("image", album.image)
                     putString("thumbnail_image", album.thumbnail_image)
+                    putString("description", album.description)
                 }
                 var intent = Intent(it.context, AlbumActivity::class.java)
                 intent.putExtras(bundle) //Intent initializes an activity. context is the current activity

@@ -22,7 +22,6 @@
              android:layout_height="wrap_content"
              android:layout_margin="@dimen/fab_margin">
 
-
             <com.androidnetworking.widget.ANImageView
                     android:id="@+id/thumbnail_image"
                     android:layout_width="70dp"
@@ -34,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/thumbnail_image"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="20sp"
                     android:text="asdasdasd"/>
 
             <TextView
@@ -48,13 +48,23 @@
 
              <com.androidnetworking.widget.ANImageView
                      android:id="@+id/image"
-                     android:layout_width="300dp"
-                     android:layout_height="300dp"
+                     android:layout_width="250dp"
+                     android:layout_height="250dp"
                      android:layout_below="@+id/thumbnail_image"
                      android:layout_marginRight="@dimen/fab_margin"
                      android:layout_marginLeft="@dimen/fab_margin"
                      android:layout_marginBottom="@dimen/fab_margin"/>
 
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect_raise"
+                    android:textColor="@color/cardview_light_background"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_below="@+id/image"
+                    android:layout_centerHorizontal="true"
+                    android:padding="16dp"
+                    android:text="Add to playlist"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
