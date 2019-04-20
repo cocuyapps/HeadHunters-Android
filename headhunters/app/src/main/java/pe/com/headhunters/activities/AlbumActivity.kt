@@ -5,6 +5,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_album.*
+import kotlinx.android.synthetic.main.content_album.*
 import kotlinx.android.synthetic.main.content_albums.*
 import pe.com.headhunters.R
 
@@ -24,7 +25,8 @@ class AlbumActivity : AppCompatActivity() {
         intent?.extras?.apply { // is it starts from an invoke, then do this
             titleTextView.text = getString("title")
             artistTextView.text = getString("artist")
-            image.setImageUrl(getString("image"))
+            single_image.setImageUrl(getString("image"))
+            single_thumbnail_image.setImageUrl(getString("thumbnail_image"))
         }
     }
 
