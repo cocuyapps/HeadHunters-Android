@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "726184207586",
+    "firebase_url": "https://headhunters-7ca33.firebaseio.com",
+    "project_id": "headhunters-7ca33",
+    "storage_bucket": "headhunters-7ca33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726184207586:android:d1df6aa406f235aa",
+        "android_client_info": {
+          "package_name": "pe.com.headhunters"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726184207586-j19fmsfv972eut9udkj0krkgi03fmcvr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.com.headhunters",
+            "certificate_hash": "6f2a5a8750fdd9b4662d42b85dc8e11eb30787f2"
+          }
+        },
+        {
+          "client_id": "726184207586-bgs4kcfbsc5d3lu9uung65bulblbv7t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwO7wPmugxFNa25lttlc-ImvVkDvUqJm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726184207586-bgs4kcfbsc5d3lu9uung65bulblbv7t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
