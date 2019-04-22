@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
@@ -13,11 +14,12 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import pe.com.headhunters.R
 import pe.com.headhunters.adapters.AlbumsAdapter
-import pe.com.headhunters.models.AlbumClass
+import pe.com.headhunters.models.Album
 import pe.com.headhunters.network.AlbumsApi
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.json.JSONArray
 import org.json.JSONObject
+import pe.com.headhunters.models.Song
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class HomeFragment : Fragment() {
-    val TAG = "Albums"
+
     lateinit var albumsRecyclerView: RecyclerView //promise don't initialize now
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,42 +46,50 @@ class HomeFragment : Fragment() {
     }
 
     private fun requestAlbums(view: View) {
-        val albums = ArrayList<AlbumClass>()
-
+        val albums = ArrayList<Album>()
 
         AndroidNetworking.get(AlbumsApi.albumsUrl())
             .build()
-
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     albumsRecyclerView = view.albumsRecyclerView  //Recycler view delegates
 
                     response?.apply {
-                        //if this has a value
-                        val list = JSONArray(response.getString("albums"))
 
+                        val Albumlist = JSONArray(response.getString("albums"))
 
-                        for (i in 0 until list.length()) {
+                        for (i in 0 until Albumlist.length()) {
+                            var albumResultObject = Albumlist.getJSONObject(i)
+                            var album = Album()
+                            album.title = albumResultObject.getString("title")
+                            album.artist = albumResultObject.getString("artist")
+                            album.image = albumResultObject.getString("image")
+                            album.thumbnail_image = albumResultObject.getString("thumbnail_image")
+                            album.description = albumResultObject.getString("description")
 
-                            var resultsObject = list.getJSONObject(i)
-                            var temp = AlbumClass()
-                            temp.title = resultsObject.getString("title")
-                            temp.artist = resultsObject.getString("artist")
-                            temp.image = resultsObject.getString("image")
-                            temp.thumbnail_image = resultsObject.getString("thumbnail_image")
-                            temp.description = resultsObject.getString("description")
-                            albums.add(temp)
+                            var SongList = JSONArray(albumResultObject.getString("songs"))
+
+                            for (j in 0 until SongList.length()) {
+                                var songResultObject = SongList.getJSONObject(j)
+                                var song = Song()
+                                song.title = songResultObject.getString("title")
+                                song.artist = songResultObject.getString("artist")
+                                song.albumArtUrl = songResultObject.getString("albumArtUrl")
+                                song.audioUrl = songResultObject.getString("audioUrl")
+                                album.songs.add(song)
+                            }
+
+                            albums.add(album)
                         }
-
                         albumsRecyclerView.apply {
-                            layoutManager = LinearLayoutManager(view.context)
+                            layoutManager = LinearLayoutManager(context)
                             adapter = AlbumsAdapter(albums)
                         }
                     }
                 }
 
-                override fun onError(error: ANError) {
-                    error?.apply {
+                override fun onError(anError: ANError?) {
+                    anError?.apply {
                         Log.d("error", message)
                     }
                 }

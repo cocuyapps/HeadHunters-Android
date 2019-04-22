@@ -28,6 +28,7 @@ class AlbumActivity : AppCompatActivity() {
 
         intent?.extras?.apply { // is it starts from an invoke, then do this
 
+            setTitle(getString("title"))
             titleTextView.text = "Title: " + getString("title")
             artistTextView.text = "Artist:" + getString("artist")
             single_image.setImageUrl(getString("image"))

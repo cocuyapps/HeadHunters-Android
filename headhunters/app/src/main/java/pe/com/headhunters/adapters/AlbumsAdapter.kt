@@ -5,33 +5,47 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.widget.ANImageView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_album.view.*
 import pe.com.headhunters.R
 import pe.com.headhunters.activities.AlbumActivity
-import pe.com.headhunters.models.AlbumClass
+import pe.com.headhunters.models.Album
 
-class AlbumsAdapter(private var albums: List<AlbumClass>) :
+class AlbumsAdapter(private var albums: List<Album>) :
     RecyclerView.Adapter<AlbumsAdapter.ViewHolder>() {
+
     class ViewHolder(albumView: View) : RecyclerView.ViewHolder(albumView) {
+
+        private lateinit var dbReference: DatabaseReference
+        private var albumUploadId: String? = null
+        private var auth: FirebaseAuth
+
         var titleTextView: TextView
         var artistTextView: TextView
         var image: ANImageView
         var thumbnail_image: ANImageView
+        var addToPlayList: AppCompatButton
         var contentAlbum: ConstraintLayout
         init {
             titleTextView = albumView.title
             artistTextView = albumView.artist
             image = albumView.image
             thumbnail_image = albumView.thumbnail_image
+            addToPlayList = albumView.addToPlayList
             contentAlbum = albumView.contentAlbum
+            auth = FirebaseAuth.getInstance()
         }
-        fun bindTo(album: AlbumClass) {
+
+
+        fun bindTo(album: Album) {
             titleTextView.text = album.title
             artistTextView.text = album.artist
             image.setImageUrl(album.image)
@@ -49,6 +63,17 @@ class AlbumsAdapter(private var albums: List<AlbumClass>) :
                 var intent = Intent(it.context, AlbumActivity::class.java)
                 intent.putExtras(bundle) //Intent initializes an activity. context is the current activity
                 it.context.startActivity(intent)
+            }
+
+            addToPlayList.setOnClickListener {
+                //assign FirebaseDatabase instance with root database name
+                dbReference = FirebaseDatabase.getInstance().getReference("/User/${auth.uid}/albums")
+                //getting AlbumId
+                albumUploadId = dbReference.push().key
+                //adding album upload id's child element into databaseReference
+                albumUploadId?.let { dbReference.child(it).setValue(album) }
+
+                Toast.makeText(it.context,"Album added!", Toast.LENGTH_LONG).show()
             }
         }
     }
