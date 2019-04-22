@@ -2,6 +2,7 @@ package pe.com.headhunters.adapters
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.widget.ANImageView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.content_album.view.*
 import pe.com.headhunters.R
 import pe.com.headhunters.activities.AlbumActivity
 import pe.com.headhunters.models.Album
+
 
 class AlbumsAdapter(private var albums: List<Album>) :
     RecyclerView.Adapter<AlbumsAdapter.ViewHolder>() {
@@ -34,6 +35,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
         var thumbnail_image: ANImageView
         var addToPlayList: AppCompatButton
         var contentAlbum: ConstraintLayout
+        var txtAlbumAdded: TextView
         init {
             titleTextView = albumView.title
             artistTextView = albumView.artist
@@ -41,9 +43,9 @@ class AlbumsAdapter(private var albums: List<Album>) :
             thumbnail_image = albumView.thumbnail_image
             addToPlayList = albumView.addToPlayList
             contentAlbum = albumView.contentAlbum
+            txtAlbumAdded = albumView.txtAddedAlbum
             auth = FirebaseAuth.getInstance()
         }
-
 
         fun bindTo(album: Album) {
             titleTextView.text = album.title
@@ -51,6 +53,30 @@ class AlbumsAdapter(private var albums: List<Album>) :
             image.setImageUrl(album.image)
             thumbnail_image.setImageUrl(album.thumbnail_image)
 
+            lateinit var dbReference: DatabaseReference
+            var serialized: Album
+            var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+            //send Query to FirebaseDatabase
+            dbReference = FirebaseDatabase.getInstance().getReference("/User/${auth.uid}/albums")
+
+            //get all albums from this particular user
+            dbReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (child: DataSnapshot in snapshot.children) {
+                        serialized = child.getValue(Album::class.java)!!
+                        if(serialized.title == album.title) {
+                            addToPlayList.visibility = View.GONE
+                            txtAlbumAdded.visibility = View.VISIBLE
+                        }
+                    }
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.e("Firebase:", p0.toString())
+                }
+            })
+            
             contentAlbum.setOnClickListener {
                 val bundle = Bundle()
                 bundle.apply {
@@ -73,6 +99,9 @@ class AlbumsAdapter(private var albums: List<Album>) :
                 //adding album upload id's child element into databaseReference
                 albumUploadId?.let { dbReference.child(it).setValue(album) }
 
+                addToPlayList.visibility = View.GONE
+                txtAlbumAdded.visibility = View.VISIBLE
+
                 Toast.makeText(it.context,"Album added!", Toast.LENGTH_LONG).show()
             }
         }
@@ -82,6 +111,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
         return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.content_album, parent, false))
+
     }
 
     override fun getItemCount(): Int {
@@ -91,4 +121,5 @@ class AlbumsAdapter(private var albums: List<Album>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindTo(albums[position])
     }
+
 }

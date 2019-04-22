@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/contentAlbum"
+        android:layout_marginBottom="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -67,6 +68,16 @@
                     android:layout_centerHorizontal="true"
                     android:padding="16dp"
                     android:text="Add to playlist"/>
+
+            <TextView
+                    android:id="@+id/txtAddedAlbum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addToPlayList"
+                    android:visibility="gone"
+                    android:layout_toRightOf="@+id/thumbnail_image"
+                    android:layout_marginBottom="16dp"
+                    android:text="Albumm added"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

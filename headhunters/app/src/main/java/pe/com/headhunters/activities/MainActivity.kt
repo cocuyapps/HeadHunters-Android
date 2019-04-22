@@ -59,22 +59,4 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.content, getFragmentFor(item))
             .commit() > 0
     }
-
-//    fun addToPlayList(view: View) {
-//
-//        //assign FirebaseDatabase instance with root database name
-//        dbReference = FirebaseDatabase.getInstance().getReference("/User/${auth.uid}/albums")
-//        var album = Album()
-//        //getting AlbumId
-//        albumUploadId = dbReference.push().key
-//        //adding album upload id's child element into databaseReference
-//        albumUploadId?.let { dbReference.child(it).setValue(album) }
-//
-////        album.title = "2"
-////        val userBD = dbReference.child(auth.uid.toString())
-////        userBD.child("albums").setValue(album)
-////        database.getReference("/User/${auth.uid}/albums").setValue(album)
-//
-//        Toast.makeText(this,"Album added!", Toast.LENGTH_LONG).show()
-//    }
 }
