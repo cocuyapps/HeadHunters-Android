@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.widget.ANImageView
+import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.content_album.view.*
@@ -34,7 +35,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
         var image: ANImageView
         var thumbnail_image: ANImageView
         var addToPlayList: TextView
-        var contentAlbum: ConstraintLayout
+        var contentAlbum: MaterialCardView
         init {
             titleTextView = albumView.title
             artistTextView = albumView.artist

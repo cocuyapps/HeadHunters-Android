@@ -1,78 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/contentAlbum"
-        android:layout_marginBottom="80dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contentAlbum"
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="false"
+        app:cardPreventCornerOverlap="true"
 
-    <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view"
+        app:cardCornerRadius="10dp">
+
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="16dp"
-            android:minHeight="200dp">
+            android:layout_height="match_parent">
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="@dimen/fab_margin"
+                android:elevation="12dp"
+                android:id="@+id/view2"
+                app:cardCornerRadius="35dp"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                android:thicknessRatio="1.9">
             <com.androidnetworking.widget.ANImageView
-                    android:id="@+id/thumbnail_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_margin="@dimen/fab_margin"/>
-            <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/thumbnail_image"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    android:layout_marginBottom="8dp"
-                    android:textSize="20sp"
-                    android:text="asdasdasd"/>
+                    android:id="@+id/thumbnail_image"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+            </com.androidnetworking.widget.ANImageView>
 
-            <TextView
-                    android:id="@+id/artist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/title"
-                    android:layout_toRightOf="@+id/thumbnail_image"
-                    android:layout_marginBottom="16dp"
-                    android:text="sadasdasd"/>
+        </com.google.android.material.card.MaterialCardView>
 
-            <com.androidnetworking.widget.ANImageView
-                    android:id="@+id/image"
-                    android:layout_width="400dp"
-                    android:layout_height="250dp"
-                    android:layout_below="@+id/thumbnail_image"
-                    android:layout_marginBottom="@dimen/fab_margin"/>
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/view2"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:text="asdasdasd"/>
 
-            <TextView
-                    android:onClick="addToPlayList"
-                    android:id="@+id/addToPlayList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/design_default_color_primary"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_below="@+id/image"
-                    android:text="Add to playlist"/>
+        <TextView
+                android:id="@+id/artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_toRightOf="@+id/view2"
+                android:layout_marginBottom="16dp"
+                android:text="sadasdasd"/>
 
-            <ImageView
-                    android:id="@+id/btnLike"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_below="@+id/image"
-                    android:layout_alignParentRight="true"
-                    app:srcCompat="@drawable/ic_play_arrow_white_48pt" tools:srcCompat="@drawable/heart1"
-                    android:layout_marginTop="@dimen/fab_margin" android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_marginEnd="@dimen/fab_margin" android:layout_marginBottom="@dimen/fab_margin"/>
+        <com.androidnetworking.widget.ANImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/view2"
+                android:scaleType="centerCrop"/>
 
-        </RelativeLayout>
+        <TextView
+                android:onClick="addToPlayList"
+                android:id="@+id/addToPlayList"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:layout_margin="@dimen/fab_margin"
+                android:paddingTop="8dp"
+                android:layout_below="@+id/image"
+                android:text="Add to playlist"/>
 
-    </com.google.android.material.card.MaterialCardView>
+        <ImageView
+                android:id="@+id/btnLike"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_below="@+id/image"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/heart1"
+                android:layout_margin="@dimen/fab_margin"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
