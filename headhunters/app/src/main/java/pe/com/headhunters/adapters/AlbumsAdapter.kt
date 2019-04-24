@@ -33,9 +33,8 @@ class AlbumsAdapter(private var albums: List<Album>) :
         var artistTextView: TextView
         var image: ANImageView
         var thumbnail_image: ANImageView
-        var addToPlayList: AppCompatButton
+        var addToPlayList: TextView
         var contentAlbum: ConstraintLayout
-        var txtAlbumAdded: TextView
         init {
             titleTextView = albumView.title
             artistTextView = albumView.artist
@@ -43,7 +42,6 @@ class AlbumsAdapter(private var albums: List<Album>) :
             thumbnail_image = albumView.thumbnail_image
             addToPlayList = albumView.addToPlayList
             contentAlbum = albumView.contentAlbum
-            txtAlbumAdded = albumView.txtAddedAlbum
             auth = FirebaseAuth.getInstance()
         }
 
@@ -66,8 +64,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
                     for (child: DataSnapshot in snapshot.children) {
                         serialized = child.getValue(Album::class.java)!!
                         if(serialized.title == album.title) {
-                            addToPlayList.visibility = View.GONE
-                            txtAlbumAdded.visibility = View.VISIBLE
+                            addToPlayList.text = "Album added"
                         }
                     }
                 }
@@ -99,8 +96,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
                 //adding album upload id's child element into databaseReference
                 albumUploadId?.let { dbReference.child(it).setValue(album) }
 
-                addToPlayList.visibility = View.GONE
-                txtAlbumAdded.visibility = View.VISIBLE
+                addToPlayList.text = "Album added"
 
                 Toast.makeText(it.context,"Album added!", Toast.LENGTH_LONG).show()
             }
