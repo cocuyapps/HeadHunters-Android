@@ -16,6 +16,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity
+                android:name=".activities.AlbumPlayList"
+                android:label="@string/title_activity_album_play_list"
+                android:parentActivityName=".activities.MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="pe.com.headhunters.activities.MainActivity"/>
+        </activity>
         <activity android:name=".activities.MainActivity">
         </activity>
         <activity android:name=".activities.auth.LoginActivity">

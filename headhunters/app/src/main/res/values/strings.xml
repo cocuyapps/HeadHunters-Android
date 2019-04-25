@@ -8,5 +8,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_album">Albums</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_album_play_list">AlbumPlayList</string>
 
 </resources>
