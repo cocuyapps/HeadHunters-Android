@@ -67,6 +67,7 @@ class HomeFragment : Fragment() {
                             album.image = albumResultObject.getString("image")
                             album.thumbnail_image = albumResultObject.getString("thumbnail_image")
                             album.description = albumResultObject.getString("description")
+                            album.likes = albumResultObject.getInt("likes")
 
                             var SongList = JSONArray(albumResultObject.getString("songs"))
 

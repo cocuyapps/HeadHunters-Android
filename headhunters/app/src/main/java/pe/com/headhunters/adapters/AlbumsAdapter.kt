@@ -65,12 +65,10 @@ class AlbumsAdapter(private var albums: List<Album>) :
             artistTextView.text = album.artist
             image.setImageUrl(album.image)
             thumbnail_image.setImageUrl(album.thumbnail_image)
-            lateinit var albumKey: String
-            var likes = 0
-            lateinit var dbReference: DatabaseReference
 
+            //for firebase
+            lateinit var albumKey: String
             var serialized: Album
-            var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
             //send Query to FirebaseDatabase
             dbReference = FirebaseDatabase.getInstance().getReference("/User/${auth.uid}/albums")
@@ -81,18 +79,18 @@ class AlbumsAdapter(private var albums: List<Album>) :
                     for (child: DataSnapshot in snapshot.children) {
                         serialized = child.getValue(Album::class.java)!!
                         if(serialized.title == album.title) {
+                            albumKey = child.key!!
                             addToPlayList.text = "Album added"
-                            if(serialized.liked == 1) {
-                                heartColor.setImageResource(R.drawable.heartred)
-                                heartColor.setTag("heartred")
-                            } else {
-                                heartColor.setImageResource(R.drawable.heartblank)
-                                heartColor.setTag("heartblank")
-                            }
-                        }
 
-                        album.liked = serialized.liked
-                        albumKey = child.key!!
+                            if(serialized.liked == 1) {
+                                heartColor.setTag("heartred")
+                                heartColor.setImageResource(R.drawable.heartred)
+                            } else {
+                                heartColor.setTag("heartblank")
+                                heartColor.setImageResource(R.drawable.heartblank)
+                            }
+                            album.liked = serialized.liked
+                        }
                     }
                 }
 
@@ -101,24 +99,6 @@ class AlbumsAdapter(private var albums: List<Album>) :
                 }
             })
 
-            //Get the number of likes of this particular album
-            AndroidNetworking.get(AlbumsApi.albumsUrl()+"/"+album._id)
-                .build()
-                .getAsJSONObject(object : JSONObjectRequestListener {
-                    override fun onResponse(response: JSONObject?) {
-
-                        response?.apply {
-                            likes = response.get("likes") as Int
-                        }
-                    }
-
-                    override fun onError(anError: ANError?) {
-                        anError?.apply {
-                            Log.d("error", message)
-                        }
-                    }
-                })
-            
             contentAlbum.setOnClickListener {
                 val bundle = Bundle()
                 bundle.apply {
@@ -151,10 +131,10 @@ class AlbumsAdapter(private var albums: List<Album>) :
             heartColor.setOnClickListener {
                 if (addToPlayList.text == "Album added") {
                     if (heartColor.getTag() == "heartblank") {
-                        likes += 1
+                        album.likes += 1
                         val jsonObject = JSONObject()
                         try {
-                            jsonObject.put("likes", likes)
+                            jsonObject.put("likes", album.likes)
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }
@@ -177,19 +157,20 @@ class AlbumsAdapter(private var albums: List<Album>) :
 
                         //assign FirebaseDatabase instance with root database name
                         dbReference = FirebaseDatabase.getInstance().getReference("/User/${auth.uid}/albums")
-                        album.liked = 1
                         //assign liked to this album
+                        album.liked = 1
                         dbReference.child(albumKey).setValue(album)
 
-                        heartColor.setImageResource(R.drawable.heartred)
                         heartColor.setTag("heartred")
+                        heartColor.setImageResource(R.drawable.heartred)
+
                         Toast.makeText(it.context,"Nice!", Toast.LENGTH_SHORT).show()
 
                     } else {
-                        likes -= 1
+                        album.likes -= 1
                         val jsonObject = JSONObject()
                         try {
-                            jsonObject.put("likes", likes)
+                            jsonObject.put("likes", album.likes)
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }
@@ -216,8 +197,9 @@ class AlbumsAdapter(private var albums: List<Album>) :
                         album.liked = 0
                         dbReference.child(albumKey).setValue(album)
 
-                        heartColor.setImageResource(R.drawable.heartblank)
                         heartColor.setTag("heartblank")
+                        heartColor.setImageResource(R.drawable.heartblank)
+
                         Toast.makeText(it.context,"Pitty", Toast.LENGTH_SHORT).show()
                     }
                 } else {

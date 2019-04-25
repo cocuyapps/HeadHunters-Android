@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/coverArt"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:text="asdasdasd"
             android:textColor="@color/white"
             android:layout_marginEnd="8dp"
