@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
                         for (i in 0 until Albumlist.length()) {
                             var albumResultObject = Albumlist.getJSONObject(i)
                             var album = Album()
+                            album._id = albumResultObject.getString("_id")
                             album.title = albumResultObject.getString("title")
                             album.artist = albumResultObject.getString("artist")
                             album.image = albumResultObject.getString("image")
@@ -96,4 +97,3 @@ class HomeFragment : Fragment() {
             })
     }
 }
-

@@ -13,7 +13,8 @@ data class Album(
     var songs: ArrayList<Song>,
     var genre: String,
     var likes: Int,
-    var description: String
+    var description: String,
+    var liked: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -25,7 +26,8 @@ data class Album(
         parcel.readArrayList(Song::class.java.classLoader) as ArrayList<Song>,
         parcel.readString(),
         parcel.readInt(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readInt()
     )
 
     constructor() : this (
@@ -38,7 +40,8 @@ data class Album(
         ArrayList<Song>(),
         "",
         0,
-        "")
+        "",
+        0)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(_id)
@@ -51,6 +54,7 @@ data class Album(
         parcel.writeString(genre)
         parcel.writeInt(likes)
         parcel.writeString(description)
+        parcel.writeInt(liked)
     }
 
     override fun describeContents(): Int {

@@ -77,12 +77,14 @@
                 android:text="Add to playlist"/>
 
         <ImageView
-                android:id="@+id/btnLike"
+                android:id="@+id/imgHeart"
+                android:onClick="colorHeart"
+                android:tag="heartblank"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_below="@+id/image"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/heart1"
+                android:src="@drawable/heartblank"
                 android:layout_margin="@dimen/fab_margin"/>
 
     </RelativeLayout>
