@@ -39,6 +39,7 @@ class PlayListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        activity?.setTitle("Playlist")
         super.onViewCreated(view, savedInstanceState)
         requestAlbums(view)
     }

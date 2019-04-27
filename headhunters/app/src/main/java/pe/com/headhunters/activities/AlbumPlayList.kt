@@ -3,6 +3,7 @@ package pe.com.headhunters.activities
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -44,6 +45,7 @@ class AlbumPlayList : AppCompatActivity() {
             toolbar_title.isSelected = true
             toolbar_title.text = "Album: " + album.title
             songs = album.songs
+            Log.i("SONGS",songs.toString())
             displaySong(songs[currentPosition].title, songs[currentPosition].artist, songs[currentPosition].albumArtUrl)
 
         }

@@ -59,4 +59,11 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.content, getFragmentFor(item))
             .commit() > 0
     }
+
+    fun switchContent(fragment: Fragment) : Boolean {
+        return supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.content, fragment)
+            .commit() > 0
+    }
 }

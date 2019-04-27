@@ -18,18 +18,18 @@
             android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_margin="@dimen/fab_margin"
                 android:elevation="12dp"
                 android:id="@+id/view2"
-                app:cardCornerRadius="35dp"
+                app:cardCornerRadius="30dp"
                 android:innerRadius="0dp"
                 android:shape="ring"
                 android:thicknessRatio="1.9">
             <com.androidnetworking.widget.ANImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:id="@+id/thumbnail_image"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true">

@@ -21,7 +21,6 @@ class AlbumActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         intent?.extras?.apply { // is it starts from an invoke, then do this
 
             setTitle(getString("title"))

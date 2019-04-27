@@ -1,5 +1,6 @@
 package pe.com.headhunters.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import kotlinx.android.synthetic.main.content_albums.*
 import pe.com.headhunters.R
 import pe.com.headhunters.adapters.AlbumsAdapter
 import pe.com.headhunters.models.Album
@@ -40,22 +42,23 @@ class HomeFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        super.onViewCreated(view, savedInstanceState) //refinement (invokes father super method)
-        requestAlbums(view)
+        activity?.setTitle("Most Listened")
+        super.onViewCreated(view, arguments) //refinement (invokes father super method)
+        requestAlbums(view, arguments)
     }
 
-    private fun requestAlbums(view: View) {
+    private fun requestAlbums(view: View, arguments: Bundle?) {
         val albums = ArrayList<Album>()
 
-        AndroidNetworking.get(AlbumsApi.albumsUrl())
+        var url = if(arguments != null) AlbumsApi.albumsUrl()+"/?genre="+arguments?.getString("Genre") else AlbumsApi.albumsUrl()
+
+        AndroidNetworking.get(url)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     albumsRecyclerView = view.albumsRecyclerView  //Recycler view delegates
 
                     response?.apply {
-
                         val Albumlist = JSONArray(response.getString("albums"))
 
                         for (i in 0 until Albumlist.length()) {
