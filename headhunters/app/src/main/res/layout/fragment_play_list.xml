@@ -5,6 +5,16 @@
              android:layout_height="match_parent"
              tools:context=".fragments.PlayListFragment">
 
+    <ProgressBar
+            android:id="@+id/playlistProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:indeterminate="true"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/albumsGridRecyclerView"

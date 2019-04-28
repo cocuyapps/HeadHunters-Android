@@ -56,23 +56,27 @@ class SearchFragment : Fragment() {
 
     private fun requestGenres(view: View) {
         val titleGenres = ArrayList<String>()
-        val imgGenres = ArrayList<Int>()
+        val imgGenres = ArrayList<String>()
 
         AndroidNetworking.get(AlbumsApi.albumsUrl()+"/genres")
             .build()
-            .getAsJSONArray(object: JSONArrayRequestListener {
+            .getAsJSONObject(object: JSONObjectRequestListener {
 
-                override fun onResponse(response: JSONArray?) {
+                override fun onResponse(response: JSONObject?) {
                     genresRecyclerView = view.genresRecyclerView
-                    response?.apply {
 
-                        for(i in 0 until response.length()) {
-                            titleGenres.add(response.get(i).toString())
+                    response?.apply {
+                        val genreList = JSONArray(response.getString("genres"))
+
+                        for(i in 0 until genreList.length()) {
+                            var genresResultObject = genreList.getJSONObject(i)
+                            titleGenres.add(genresResultObject.getString("genre"))
+                            imgGenres.add(genresResultObject.getString("genreimg"))
                         }
 
                         genresRecyclerView.apply {
                             layoutManager = GridLayoutManager(context, 2)
-                            adapter = GenresAdapter(titleGenres, context)
+                            adapter = GenresAdapter(titleGenres, imgGenres)
                             progressBar.visibility = View.GONE
                         }
                     }

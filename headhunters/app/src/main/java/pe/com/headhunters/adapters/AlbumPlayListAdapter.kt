@@ -45,7 +45,6 @@ class AlbumPlayListAdapter(private var albums : List<Album>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.i("HOLA", "AASD")
         return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.content_album_playlist, parent, false))

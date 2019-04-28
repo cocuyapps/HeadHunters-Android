@@ -15,27 +15,25 @@ import kotlinx.android.synthetic.main.content_genres.view.*
 import pe.com.headhunters.R
 import pe.com.headhunters.fragments.HomeFragment
 import androidx.fragment.app.FragmentActivity
+import com.androidnetworking.widget.ANImageView
 import pe.com.headhunters.activities.MainActivity
 
-class GenresAdapter(private var genres: List<String>,private var  context: Context) :
+class GenresAdapter(private var genres: List<String>, private var genresimg: List<String>) :
         RecyclerView.Adapter<GenresAdapter.ViewHolder>() {
 
 
     class ViewHolder(genreView: View) : RecyclerView.ViewHolder(genreView) {
 
         var genreTitle: TextView
-        var genreImage: ImageView
+        var genreImage: ANImageView
         init {
             genreTitle = genreView.genreTitle
             genreImage = genreView.genreImage
         }
 
-        fun bindTo(genre: String, context: Context) {
+        fun bindTo(genre: String, genreimg: String) {
             genreTitle.text = genre
-            genreImage.setImageResource(context.getResources().getIdentifier(
-                genre.toLowerCase(),
-                "drawable",
-                context.getPackageName()))
+            genreImage.setImageUrl(genreimg)
 
             genreImage.setOnClickListener {
                 val fragment = HomeFragment()
@@ -61,6 +59,6 @@ class GenresAdapter(private var genres: List<String>,private var  context: Conte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindTo(genres[position], context)
+        holder.bindTo(genres[position], genresimg[position])
     }
 }

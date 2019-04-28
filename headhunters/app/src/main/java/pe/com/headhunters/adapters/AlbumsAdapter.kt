@@ -181,7 +181,7 @@ class AlbumsAdapter(private var albums: List<Album>) :
                             .getAsOkHttpResponse(object: OkHttpResponseListener {
                                 override fun onResponse(response: Response?) {
                                     response?.apply {
-                                        Log.i("RESPOMNSE", response.toString())
+                                        Log.i("RESPONSE", response.toString())
                                     }
                                 }
                                 override fun onError(anError: ANError?) {

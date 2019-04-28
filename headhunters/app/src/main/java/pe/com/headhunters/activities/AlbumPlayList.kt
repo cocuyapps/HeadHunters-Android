@@ -1,24 +1,28 @@
 package pe.com.headhunters.activities
 
+import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
-import kotlinx.android.synthetic.main.activity_album.*
 import pe.com.headhunters.R
 
 import kotlinx.android.synthetic.main.activity_album_play_list.*
-import kotlinx.android.synthetic.main.content_album.view.*
 import pe.com.headhunters.adapters.AlbumPlayListAdapter
 import pe.com.headhunters.models.Album
 import pe.com.headhunters.models.Song
 import java.io.IOException
+import java.lang.Error
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timerTask
+
 
 class AlbumPlayList : AppCompatActivity() {
 
@@ -27,6 +31,11 @@ class AlbumPlayList : AppCompatActivity() {
     private var currentPosition = 0
     private lateinit var btnPlayPause: ImageView
     private lateinit var toolbar_title: TextView
+    private var audioManager: AudioManager? = null
+    private lateinit var volumeSeekBar: SeekBar
+    private lateinit var scrubberSeekBar: SeekBar
+    private lateinit var txtStart: TextView
+    private lateinit var txtEnd: TextView
     private var songs = ArrayList<Song>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +47,64 @@ class AlbumPlayList : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(null)
 
+        //get information of the volume of our device
+        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+        var maxVolume = audioManager?.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        var currentVolume = audioManager?.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+        volumeSeekBar = findViewById(R.id.volumeSeekBar)
+        scrubberSeekBar = findViewById(R.id.scrubberSeekBar)
+        txtStart = findViewById(R.id.txtStart)
+        txtEnd = findViewById(R.id.txtEnd)
+        var handler = Handler()
+
+        volumeSeekBar.max = maxVolume!!
+        volumeSeekBar.progress = currentVolume!!
+
+        volumeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                audioManager?.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0)
+            }
+
+        })
+
+        scrubberSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                player?.seekTo(progress)
+                var minutes = progress / 60000
+                var seconds = (progress - minutes * 60) / 1000
+                seconds %= 60
+
+                var secondStr = Integer.toString(seconds)
+                if (secondStr == "0")
+                    secondStr = "00"
+                if (secondStr.length == 1)
+                    secondStr = "0"+secondStr
+
+                txtStart.text = Integer.toString(minutes) + ":" + secondStr
+            }
+
+        })
+
         intent?.let {
             val album = intent.extras.getParcelable(AlbumPlayListAdapter.ViewHolder.ALBUM) as Album
-            btnPlayPause = findViewById(R.id.btnPlayPause)
+            btnPlayPause = this.findViewById(R.id.btnPlayPause)
             toolbar_title = findViewById(R.id.toolbar_title)
             toolbar_title.isSelected = true
             toolbar_title.text = "Album: " + album.title

@@ -21,7 +21,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:cardCornerRadius="10dp">
 
-        <ImageView
+        <com.androidnetworking.widget.ANImageView
                 android:id="@+id/genreImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

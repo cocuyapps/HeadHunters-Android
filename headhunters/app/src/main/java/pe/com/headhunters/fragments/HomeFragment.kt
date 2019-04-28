@@ -1,19 +1,19 @@
 package pe.com.headhunters.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import kotlinx.android.synthetic.main.content_albums.*
+
 import pe.com.headhunters.R
 import pe.com.headhunters.adapters.AlbumsAdapter
 import pe.com.headhunters.models.Album
@@ -35,7 +35,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment() {
 
+    private lateinit var progressBar: ProgressBar
     lateinit var albumsRecyclerView: RecyclerView //promise don't initialize now
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +45,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         activity?.setTitle("Most Listened")
+        progressBar = getView()!!.findViewById<ProgressBar>(R.id.homeProgressBar)
+        progressBar.visibility = View.VISIBLE
         super.onViewCreated(view, arguments) //refinement (invokes father super method)
         requestAlbums(view, arguments)
     }
@@ -89,6 +93,7 @@ class HomeFragment : Fragment() {
                         albumsRecyclerView.apply {
                             layoutManager = LinearLayoutManager(context)
                             adapter = AlbumsAdapter(albums)
+                            progressBar.visibility = View.GONE
                         }
                     }
                 }
