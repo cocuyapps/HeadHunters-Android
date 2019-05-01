@@ -175,7 +175,6 @@ class AlbumPlayList : AppCompatActivity() {
             val imageId = getImageIdFromDrawable("pause")
             btnPlayPause.setImageResource(imageId)
             btnPlayPause.alpha = 0.5f
-
             toolbar_title.text = "Now playing: ${songs[currentPosition].title} - ${songs[currentPosition].artist}"
             gracefullyStopWhenMusicEnds()
         } else {

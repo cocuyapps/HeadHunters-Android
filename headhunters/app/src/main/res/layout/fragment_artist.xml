@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragments.ArtistFragment">
+
+    <ProgressBar
+            android:id="@+id/artistProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:indeterminate="true"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/artistRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</FrameLayout>

@@ -75,7 +75,7 @@ class SearchFragment : Fragment() {
                         }
 
                         genresRecyclerView.apply {
-                            layoutManager = GridLayoutManager(context, 2)
+                            layoutManager = GridLayoutManager(context, 2) as RecyclerView.LayoutManager?
                             adapter = GenresAdapter(titleGenres, imgGenres)
                             progressBar.visibility = View.GONE
                         }

@@ -18,9 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import org.json.JSONObject
 import pe.com.headhunters.R
-import pe.com.headhunters.fragments.HomeFragment
-import pe.com.headhunters.fragments.PlayListFragment
-import pe.com.headhunters.fragments.SearchFragment
+import pe.com.headhunters.fragments.*
 import pe.com.headhunters.models.Album
 
 
@@ -47,6 +45,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_playlist -> {
                 return PlayListFragment()
+            }
+            R.id.navigation_profile -> {
+                return ProfileFragment()
+            }
+            R.id.navigation_artist -> {
+                return ArtistFragment()
             }
         }
         return HomeFragment()
