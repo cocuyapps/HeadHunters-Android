@@ -57,6 +57,7 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        activity?.setTitle("Profile")
         super.onViewCreated(view, savedInstanceState)
         txtBandName = view!!.findViewById(R.id.txtBandName)
         txtBandMembers = view!!.findViewById(R.id.txtBandMembers)
