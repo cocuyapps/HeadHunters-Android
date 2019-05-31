@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
     private lateinit var registerBtn: Button
+    private lateinit var toLoginBtn: Button
     private lateinit var progressBar: ProgressBar
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
@@ -34,6 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         txtEmail = findViewById(R.id.txtEmail)
         txtPassword = findViewById(R.id.txtPassword)
         registerBtn = findViewById(R.id.registerBtn)
+        toLoginBtn = findViewById(R.id.toLoginBtn)
         progressBar = findViewById(R.id.progressBar)
         //firebase concern
         database = FirebaseDatabase.getInstance()
@@ -58,7 +60,8 @@ class RegisterActivity : AppCompatActivity() {
 
         if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
             progressBar.visibility = View.VISIBLE
-            registerBtn.setVisibility(View.GONE);
+            registerBtn.visibility = View.GONE
+            toLoginBtn.visibility = View.GONE
             auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this){
                         task ->
@@ -74,6 +77,7 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         progressBar.visibility = View.GONE
                         registerBtn.visibility = View.VISIBLE
+                        toLoginBtn.visibility = View.VISIBLE
                     }
                 }
         }
