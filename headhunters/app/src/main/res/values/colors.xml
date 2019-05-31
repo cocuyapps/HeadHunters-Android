@@ -5,6 +5,11 @@
     <color name="colorPrimaryDarker">#003D35</color>
     <color name="colorAccent">#1B8CD8</color>
     <color name="colorRaised">#A4D1F7</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorPurple">#983CFF</color>
+    <color name="colorPurpleT">#64983cff</color>
+    <color name="colorBlue">#2FB4FF</color>
+    <color name="colorBlueT">#642fb4ff</color>
 
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>

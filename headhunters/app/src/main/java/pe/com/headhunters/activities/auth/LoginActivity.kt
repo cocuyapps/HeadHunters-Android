@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var txtPassword: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var loginBtn: Button
+    private lateinit var toRegisterBtn: Button
 
     private lateinit var auth: FirebaseAuth
 
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         txtUserName = findViewById(R.id.txtUserName)
         txtPassword = findViewById(R.id.txtPassword)
         progressBar = findViewById(R.id.progressBar)
+        toRegisterBtn = findViewById(R.id.toRegisterBtn)
         loginBtn = findViewById(R.id.login)
 
         auth = FirebaseAuth.getInstance()
@@ -51,7 +53,8 @@ class LoginActivity : AppCompatActivity() {
 
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)){
             progressBar.visibility = View.VISIBLE
-            loginBtn.setVisibility(View.GONE);
+            loginBtn.visibility = View.GONE
+            toRegisterBtn.visibility = View.GONE
             auth.signInWithEmailAndPassword(user, password)
                 .addOnCompleteListener(this){
                         task ->
@@ -62,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
                     else{
                         progressBar.visibility = View.GONE
                         loginBtn.visibility = View.VISIBLE
+                        toRegisterBtn.visibility = View.VISIBLE
                         Toast.makeText(this,"Authentication error", Toast.LENGTH_LONG).show()
                     }
                 }
