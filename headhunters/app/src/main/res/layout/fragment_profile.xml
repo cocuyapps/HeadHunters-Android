@@ -5,9 +5,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorWhite"
         tools:context=".fragments.ProfileFragment">
 
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/bgHeader"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/header_register"
+            android:theme="@style/ToolbarTheme"
+            android:elevation="5dp" />
+    <ImageView
+            android:id="@+id/circle3"
+            android:layout_width="182dp"
+            android:layout_height="182dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="-81dp"
+            android:layout_marginBottom="-60dp"
+            android:src="@drawable/circle" />
+
+    <ImageView
+            android:id="@+id/circle4"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="-21dp"
+            android:layout_marginBottom="-50dp"
+            android:layout_toLeftOf="@+id/circle3"
+            android:src="@drawable/circletransparant" />
     <RelativeLayout
             android:id="@+id/rellay"
             android:layout_width="wrap_content"
@@ -24,7 +51,7 @@
                 android:layout_marginTop="0dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Edit Profile"
-                android:textColor="@color/white"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="30sp" />
 
         <LinearLayout
@@ -46,7 +73,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Band name"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPurple"
                         android:textSize="15sp" />
 
                 <EditText
@@ -54,12 +81,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
-                        android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
                         android:textSize="15sp" />
             </LinearLayout>
 
@@ -74,7 +98,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Band members"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPurple"
                         android:textSize="15sp" />
 
                 <EditText
@@ -82,7 +106,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
@@ -102,18 +125,17 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Band description"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPurple"
                         android:textSize="15sp" />
 
                 <EditText
                         android:id="@+id/txtBandDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
                         android:inputType="textMultiLine"
-                        android:lines="6"
+                        android:lines="3"
                         android:maxLines="10"
                         android:minLines="6"
                         android:paddingLeft="15dp"
@@ -133,7 +155,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Band image url"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPurple"
                         android:textSize="15sp" />
 
                 <EditText
@@ -141,7 +163,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
@@ -160,7 +181,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Link to music sample"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPurple"
                         android:textSize="15sp" />
 
                 <EditText
@@ -168,7 +189,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
@@ -185,13 +205,13 @@
                 android:layout_below="@+id/linay1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/bg_ui"
                 android:fontFamily="sans-serif-medium"
                 android:paddingLeft="70dp"
                 android:paddingRight="70dp"
                 android:text="Save profile"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/colorWhite"
                 android:textSize="16sp" />
 
     </RelativeLayout>
