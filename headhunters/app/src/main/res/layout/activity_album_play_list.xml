@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDarker"
+        android:background="@color/colorWhite"
         tools:context=".activities.AlbumPlayList">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -54,15 +54,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/coverArt"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:text="asdasdasd"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPurple"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/coverArt"/>
 
     <TextView
@@ -71,44 +71,63 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtTitle"
             android:text="sadasdasd"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPurple"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70px"
+            android:layout_height="70px"
             android:src="@drawable/back"
             android:id="@+id/imageButton"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="52dp"
             android:onClick="playPrevious"
             app:layout_constraintTop_toBottomOf="@+id/scrubberSeekBar"
-            android:layout_marginTop="36dp"/>
+            android:layout_marginTop="10dp"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70px"
+            android:layout_height="70px"
             android:src="@drawable/next"
             android:id="@+id/imageButton2"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="52dp"
             android:onClick="playNext"
             app:layout_constraintTop_toBottomOf="@+id/scrubberSeekBar"
-            android:layout_marginTop="36dp"/>
+            android:layout_marginTop="10dp"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70px"
+            android:layout_height="70px"
             android:src="@drawable/playarrow"
             android:id="@+id/btnPlayPause"
             app:layout_constraintStart_toEndOf="@+id/imageButton"
             android:layout_marginStart="56dp"
-            android:onClick="playOrPauseMusic" android:layout_marginEnd="56dp"
+            android:onClick="playOrPauseMusic"
+            android:layout_marginEnd="56dp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton2"
             app:layout_constraintTop_toBottomOf="@+id/scrubberSeekBar"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="10dp"/>
+    <ImageView android:layout_width="70px"
+               android:layout_height="70px"
+               android:src="@drawable/volumedown"
+               android:id="@+id/btnVolumeDown"
+               app:layout_constraintStart_toStartOf="parent"
+               android:layout_marginStart="65dp"
+               app:layout_constraintTop_toBottomOf="@id/imageButton"
+               android:layout_marginTop="15dp"
+    />
+    <ImageView android:layout_width="70px"
+               android:layout_height="70px"
+               android:src="@drawable/volumeup"
+               android:id="@+id/btnVolumeUp"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_marginEnd="65dp"
+               app:layout_constraintTop_toBottomOf="@id/imageButton2"
+               android:layout_marginTop="15dp"
+    />
     <SeekBar
             android:layout_width="match_parent"
             android:layout_height="12dp"
@@ -116,14 +135,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnPlayPause"
             android:layout_marginEnd="100dp"
-            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="100dp"/>
     <SeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrubberSeekBar"
             app:layout_constraintTop_toBottomOf="@+id/txtArttist"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="28dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -133,15 +153,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtStart"
-            app:layout_constraintTop_toBottomOf="@+id/txtArttist" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="28dp" android:layout_marginTop="18dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtArttist"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/colorPurple"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"/>
     <TextView
             android:text="00:00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtEnd"
-            app:layout_constraintTop_toBottomOf="@+id/txtArttist" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="28dp" android:layout_marginTop="18dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtArttist"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/colorPurple"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="5dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
