@@ -24,6 +24,7 @@ import pe.com.headhunters.models.Album
 
 class MainActivity : AppCompatActivity() {
 
+    var message: Boolean = false
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         navigateTo(item)
     }
@@ -38,18 +39,23 @@ class MainActivity : AppCompatActivity() {
     private fun getFragmentFor(item: MenuItem) : Fragment {
         when (item.itemId) {
             R.id.navigation_home -> {
+                message = false
                 return HomeFragment()
             }
             R.id.navigation_search -> {
+                message = false
                 return SearchFragment()
             }
             R.id.navigation_playlist -> {
+                message = false
                 return PlayListFragment()
             }
             R.id.navigation_profile -> {
+                message = false
                 return ProfileFragment()
             }
             R.id.navigation_artist -> {
+                message = false
                 return ArtistFragment()
             }
         }
@@ -69,5 +75,16 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.content, fragment)
             .commit() > 0
+    }
+
+    override fun onBackPressed() {
+        if(message) {
+            android.os.Process.killProcess(android.os.Process.myPid())
+            System.exit(1)
+        } else {
+            Toast.makeText(this,"If you press the back button again you will exit the app", Toast.LENGTH_SHORT).show()
+            message = true
+        }
+
     }
 }
