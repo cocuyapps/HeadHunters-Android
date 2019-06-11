@@ -104,7 +104,6 @@
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
                         android:textSize="15sp" />
             </LinearLayout>
 
@@ -134,7 +133,6 @@
                         android:minLines="6"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
                         android:textSize="15sp" />
             </LinearLayout>
 
@@ -160,7 +158,6 @@
                         android:fontFamily="sans-serif-light"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
                         android:textSize="15sp" />
             </LinearLayout>
 
@@ -187,7 +184,6 @@
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
                         android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
