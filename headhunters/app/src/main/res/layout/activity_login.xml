@@ -12,8 +12,15 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:background="@drawable/header_login"
-            android:elevation="5dp" />
+            />
 
+    <ImageView
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            app:srcCompat="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="55dp"
+            android:id="@+id/imageView2"/>
     <TextView
             android:id="@+id/tvDesc"
             android:layout_width="wrap_content"
